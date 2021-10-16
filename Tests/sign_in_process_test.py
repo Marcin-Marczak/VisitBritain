@@ -19,6 +19,7 @@ class TestSignInProcess(SignInProcessCommonCode):
         SignInProcessCommonCode.sign_in_process_common_code(self)
         assert "login" in self.driver.current_url
 
+    @pytest.mark.smoke
     def test_sign_in_process_valid_username_valid_password(self):
         SignInProcessCommonCode.sign_in_process_common_code(self)
         sign_in = SignInPage(self.driver)
