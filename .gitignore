@@ -1,0 +1,7 @@
+.idea
+.pytest_cache
+Config/env.json
+Screenshots/*
+Tests/.pytest_cache
+__pycache__
+venv
