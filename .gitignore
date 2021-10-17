@@ -1,7 +1,7 @@
 .idea
 .pytest_cache
 Config/env.json
-Screenshots/*
+*.png
 Tests/.pytest_cache
 __pycache__
 venv
