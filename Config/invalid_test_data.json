@@ -1,0 +1,7 @@
+{
+  "invalid_password_7_characters" : "Mar123!",
+  "invalid_password_lower_case" : "mmmmmmmm",
+  "invalid_password_digits" : "12345678",
+  "invalid_password_lower_and_upper_case" : "MMMMmmmm",
+  "invalid_password_digits_and_special_characters" : "1234!@#%"
+}
