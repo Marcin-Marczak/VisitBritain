@@ -1,19 +1,16 @@
 import pytest
 import os
-import random
 from Screenshot import Screenshot_Clipping
 from datetime import datetime
 from Config.config_reader import configuration_data as cd
 from Drivers.browser_random_choice import BrowserRandomChoice
-
-browsers = ["chrome", "firefox", "edge"]
 
 ob = Screenshot_Clipping.Screenshot()
 
 
 @pytest.fixture()
 def setup(request):
-    driver = BrowserRandomChoice.browser_random_choice(browser=random.choices(browsers, weights=[65, 25, 10], k=1))
+    driver = BrowserRandomChoice.browser_random_choice()
     driver.implicitly_wait(30)
     driver.set_window_size(1500, 800)
     request.cls.driver = driver

@@ -1,4 +1,5 @@
 import os
+import random
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
@@ -8,7 +9,10 @@ from Config.config_reader import configuration_data as cd
 
 class BrowserRandomChoice:
     @staticmethod
-    def browser_random_choice(browser):
+    def browser_random_choice():
+        browsers = ["chrome", "firefox", "edge"]
+        browser = random.choices(browsers, weights=[65, 25, 10], k=1)
+
         if browser == ['chrome']:
             chrome_options = ChromeOptions()
             chrome_options.add_argument("--headless")
@@ -22,3 +26,5 @@ class BrowserRandomChoice:
             edge_options.use_chromium = True
             edge_options.add_argument("headless")
             return Edge(executable_path=cd()["edge_executable_path"], options=edge_options)
+
+        return
