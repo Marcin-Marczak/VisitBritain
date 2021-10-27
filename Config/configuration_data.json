@@ -1,5 +1,7 @@
 {
     "chromedriver_executable_path": "C:\\Users\\marci\\PycharmProjects\\VisitBritain\\Drivers\\chromedriver.exe",
+    "firefox_executable_path": "C:\\Users\\marci\\PycharmProjects\\VisitBritain\\Drivers\\geckodriver.exe",
+    "edge_executable_path": "C:\\Users\\marci\\PycharmProjects\\VisitBritain\\Drivers\\msedgedriver.exe",
     "screenshots_path": "C:\\Users\\marci\\PycharmProjects\\VisitBritain\\Screenshots",
     "base_url" : "https://www.visitbritainshop.com/us/en",
 

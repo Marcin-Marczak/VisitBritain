@@ -1,23 +1,16 @@
 import pytest
 import os
-from selenium import webdriver
 from Screenshot import Screenshot_Clipping
-from selenium.webdriver.chrome.options import Options
 from datetime import datetime
 from Config.config_reader import configuration_data as cd
-
-
-options = Options()
-
-options.add_argument("--headless")
-options.add_experimental_option("excludeSwitches", ["enable-logging"])
+from Drivers.browser_random_choice import BrowserRandomChoice
 
 ob = Screenshot_Clipping.Screenshot()
 
 
 @pytest.fixture()
 def setup(request):
-    driver = webdriver.Chrome(executable_path=cd()["chromedriver_executable_path"], options=options)
+    driver = BrowserRandomChoice.browser_random_choice()
     driver.implicitly_wait(30)
     driver.set_window_size(1500, 800)
     request.cls.driver = driver
