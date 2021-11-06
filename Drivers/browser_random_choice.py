@@ -26,5 +26,3 @@ class BrowserRandomChoice:
             edge_options.use_chromium = True
             edge_options.add_argument("headless")
             return Edge(executable_path=cd()["edge_executable_path"], options=edge_options)
-
-        return
