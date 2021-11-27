@@ -11,8 +11,8 @@ from Config.generate_test_data import *
 
 
 @pytest.mark.usefixtures("setup")
-class ChangePasswordCommonCode:
-    def change_password_common_code(self):
+class ChangePasswordSetup:
+    def change_password_setup(self):
         main_page = MainPage(self.driver)
         main_page.open_main_page_and_close_cookies()
         main_page.main_page_go_to_sign_in_page()
@@ -22,10 +22,9 @@ class ChangePasswordCommonCode:
         account.account_page_go_to_change_password_page()
 
 
-class TestChangePassword(ChangePasswordCommonCode):
-
+class TestChangePassword(ChangePasswordSetup):
     def test_change_password_invalid_new_password_with_lower_case_only(self):
-        ChangePasswordCommonCode.change_password_common_code(self)
+        ChangePasswordSetup.change_password_setup(self)
         change_password = ChangePasswordPage(self.driver)
         invalid_password = itd()["invalid_password_lower_case"]
         change_password.change_password_page_fill_the_form(current_password=env()["password"], new_password=invalid_password, confirm_new_password=invalid_password)
@@ -33,7 +32,7 @@ class TestChangePassword(ChangePasswordCommonCode):
         assert validation_error_text[0].text == vet()["invalid_new_password_error_text"]
 
     def test_change_password_invalid_new_password_with_digits_only(self):
-        ChangePasswordCommonCode.change_password_common_code(self)
+        ChangePasswordSetup.change_password_setup(self)
         change_password = ChangePasswordPage(self.driver)
         invalid_password = itd()["invalid_password_digits"]
         change_password.change_password_page_fill_the_form(current_password=env()["password"], new_password=invalid_password, confirm_new_password=invalid_password)
@@ -41,7 +40,7 @@ class TestChangePassword(ChangePasswordCommonCode):
         assert validation_error_text[0].text == vet()["invalid_new_password_error_text"]
 
     def test_change_password_invalid_new_password_with_lower_and_upper_case_only(self):
-        ChangePasswordCommonCode.change_password_common_code(self)
+        ChangePasswordSetup.change_password_setup(self)
         change_password = ChangePasswordPage(self.driver)
         invalid_password = itd()["invalid_password_lower_and_upper_case"]
         change_password.change_password_page_fill_the_form(current_password=env()["password"], new_password=invalid_password, confirm_new_password=invalid_password)
@@ -49,7 +48,7 @@ class TestChangePassword(ChangePasswordCommonCode):
         assert validation_error_text[0].text == vet()["invalid_new_password_error_text"]
 
     def test_change_password_invalid_new_password_with_digits_and_special_characters_only(self):
-        ChangePasswordCommonCode.change_password_common_code(self)
+        ChangePasswordSetup.change_password_setup(self)
         change_password = ChangePasswordPage(self.driver)
         invalid_password = itd()["invalid_password_digits_and_special_characters"]
         change_password.change_password_page_fill_the_form(current_password=env()["password"], new_password=invalid_password, confirm_new_password=invalid_password)
@@ -57,7 +56,7 @@ class TestChangePassword(ChangePasswordCommonCode):
         assert validation_error_text[0].get_attribute("textContent") == vet()["invalid_new_password_error_text"]
 
     def test_change_password_too_short_new_password(self):
-        ChangePasswordCommonCode.change_password_common_code(self)
+        ChangePasswordSetup.change_password_setup(self)
         change_password = ChangePasswordPage(self.driver)
         change_password.change_password_page_fill_the_form(current_password=env()["password"], new_password=itd()["invalid_password_7_characters"], confirm_new_password=vtd()["valid_new_password_or_confirm_new_password"])
         validation_error_text = change_password.change_password_page_get_validation_error_text()
@@ -65,7 +64,7 @@ class TestChangePassword(ChangePasswordCommonCode):
         assert validation_error_text[1].get_attribute("textContent") == vet()["confirm_new_password_doesnt_match_new_password_error_text"]
 
     def test_change_password_too_short_new_password_and_confirm_new_password(self):
-        ChangePasswordCommonCode.change_password_common_code(self)
+        ChangePasswordSetup.change_password_setup(self)
         change_password = ChangePasswordPage(self.driver)
         invalid_password = itd()["invalid_password_7_characters"]
         change_password.change_password_page_fill_the_form(current_password=env()["password"], new_password=invalid_password, confirm_new_password=invalid_password)
@@ -73,21 +72,21 @@ class TestChangePassword(ChangePasswordCommonCode):
         assert validation_error_text[0].get_attribute("textContent") == vet()["too_short_new_password_error_text"]
 
     def test_change_password_new_password_blank(self):
-        ChangePasswordCommonCode.change_password_common_code(self)
+        ChangePasswordSetup.change_password_setup(self)
         change_password = ChangePasswordPage(self.driver)
         change_password.change_password_page_fill_the_form(current_password=env()["password"], new_password="", confirm_new_password=vtd()["valid_new_password_or_confirm_new_password"])
         validation_error_text = change_password.change_password_page_get_validation_error_text()
         assert validation_error_text[0].get_attribute("textContent") == vet()["required_field_error_text"]
 
     def test_change_password_confirm_new_password_blank(self):
-        ChangePasswordCommonCode.change_password_common_code(self)
+        ChangePasswordSetup.change_password_setup(self)
         change_password = ChangePasswordPage(self.driver)
         change_password.change_password_page_fill_the_form(current_password=env()["password"], new_password=vtd()["valid_new_password_or_confirm_new_password"], confirm_new_password="")
         validation_error_text = change_password.change_password_page_get_validation_error_text()
         assert validation_error_text[0].text == vet()["required_field_error_text"]
 
     def test_change_password_confirm_new_password_does_not_match(self):
-        ChangePasswordCommonCode.change_password_common_code(self)
+        ChangePasswordSetup.change_password_setup(self)
         change_password = ChangePasswordPage(self.driver)
         change_password.change_password_page_fill_the_form(current_password=env()["password"], new_password=vtd()["valid_new_password_or_confirm_new_password"], confirm_new_password=unique_random_word())
         validation_error_text = change_password.change_password_page_get_validation_error_text()

@@ -7,21 +7,21 @@ from Config.config_reader import env
 
 
 @pytest.mark.usefixtures("setup")
-class SignInProcessCommonCode:
-    def sign_in_process_common_code(self):
+class SignInProcessSetup:
+    def sign_in_process_setup(self):
         main_page = MainPage(self.driver)
         main_page.open_main_page_and_close_cookies()
         main_page.main_page_go_to_sign_in_page()
 
 
-class TestSignInProcess(SignInProcessCommonCode):
+class TestSignInProcess(SignInProcessSetup):
     def test_sign_in_process_open_login_page(self):
-        SignInProcessCommonCode.sign_in_process_common_code(self)
+        SignInProcessSetup.sign_in_process_setup(self)
         assert "login" in self.driver.current_url
 
     @pytest.mark.smoke
     def test_sign_in_process_valid_username_valid_password(self):
-        SignInProcessCommonCode.sign_in_process_common_code(self)
+        SignInProcessSetup.sign_in_process_setup(self)
         sign_in = SignInPage(self.driver)
         sign_in.sign_in_page_fill_the_form(vtd()["email"], env()["password"])
         assert "Default Billing Address" in self.driver.page_source

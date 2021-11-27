@@ -10,8 +10,8 @@ from Config.generate_test_data import *
 
 
 @pytest.mark.usefixtures("setup")
-class AccountInformationCommonCode:
-    def account_information_common_code(self):
+class AccountInformationSetup:
+    def account_information_setup(self):
         main_page = MainPage(self.driver)
         main_page.open_main_page_and_close_cookies()
         main_page.main_page_go_to_sign_in_page()
@@ -19,10 +19,10 @@ class AccountInformationCommonCode:
         sign_in.sign_in_page_fill_the_form(vtd()["email"], env()["password"])
 
 
-class TestAccountInformation(AccountInformationCommonCode):
+class TestAccountInformation(AccountInformationSetup):
     @pytest.mark.smoke
     def test_change_account_information_valid_first_name_and_last_name(self):
-        AccountInformationCommonCode.account_information_common_code(self)
+        AccountInformationSetup.account_information_setup(self)
         account_page = AccountPage(self.driver)
         first_name_before_test = account_page.account_page_get_first_name()
         last_name_before_test = account_page.account_page_get_last_name()
@@ -45,7 +45,7 @@ class TestAccountInformation(AccountInformationCommonCode):
         assert name_prefix_to_test == name_prefix_after_test
 
     def test_change_account_information_valid_first_name_and_last_name_and_go_back_without_submit(self):
-        AccountInformationCommonCode.account_information_common_code(self)
+        AccountInformationSetup.account_information_setup(self)
         account_page = AccountPage(self.driver)
         first_name_before_test = account_page.account_page_get_first_name()
         last_name_before_test = account_page.account_page_get_last_name()
@@ -64,7 +64,7 @@ class TestAccountInformation(AccountInformationCommonCode):
         assert last_name_before_test == last_name_after_test
 
     def test_change_account_information_first_name_blank(self):
-        AccountInformationCommonCode.account_information_common_code(self)
+        AccountInformationSetup.account_information_setup(self)
         account_page = AccountPage(self.driver)
         account_page.account_page_go_to_account_information_page()
         edit_account_information = EditAccountInformationPage(self.driver)
@@ -76,7 +76,7 @@ class TestAccountInformation(AccountInformationCommonCode):
         assert validation_error_text[0].get_attribute("textContent") == vet()["required_field_error_text"]
 
     def test_change_account_information_last_name_blank(self):
-        AccountInformationCommonCode.account_information_common_code(self)
+        AccountInformationSetup.account_information_setup(self)
         account_page = AccountPage(self.driver)
         account_page.account_page_go_to_account_information_page()
         edit_account_information = EditAccountInformationPage(self.driver)
@@ -88,7 +88,7 @@ class TestAccountInformation(AccountInformationCommonCode):
         assert validation_error_text[0].get_attribute("textContent") == vet()["required_field_error_text"]
 
     def test_change_account_information_first_name_and_last_name_blank(self):
-        AccountInformationCommonCode.account_information_common_code(self)
+        AccountInformationSetup.account_information_setup(self)
         account_page = AccountPage(self.driver)
         account_page.account_page_go_to_account_information_page()
         edit_account_information = EditAccountInformationPage(self.driver)
