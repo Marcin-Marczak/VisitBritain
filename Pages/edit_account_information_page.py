@@ -10,7 +10,7 @@ class EditAccountInformationPage:
         self.edit_account_information_page_name_prefix_select = (By.ID, "prefix")
         self.edit_account_information_page_first_name_input = (By.ID, "firstname")
         self.edit_account_information_page_last_name_input = (By.ID, "lastname")
-        self.edit_account_information_page_save_button = (By.XPATH, "//button[@title='Save']")
+        self.edit_account_information_page_save_button = (By.CSS_SELECTOR, "[title='Save']")
         self.edit_account_information_page_go_back_link = (By.XPATH, "//a[@class='action back']")
         self.edit_account_information_page_error_message_text = (By.XPATH, "//div[@class='mage-error']")
 

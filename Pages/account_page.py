@@ -4,10 +4,10 @@ from selenium.webdriver.common.by import By
 class AccountPage:
     def __init__(self, driver):
         self.driver = driver
-        self.account_page_sign_out_link = (By.XPATH, "//a[contains(@href, 'account/logout')]")
+        self.account_page_sign_out_link = (By.XPATH, "//a[contains(@href, 'logout')]")
         self.account_page_first_and_last_name_text = (By.XPATH, "//div[@class='box box-information']//p")
-        self.account_page_edit_account_information_link = (By.XPATH, "//div[@class='box box-information']//a[contains(@href, 'account/edit')]")
-        self.account_change_password_link = (By.XPATH, "//a[contains(@href, '/changepass/1/')]")
+        self.account_page_edit_account_information_link = (By.XPATH, "//div[@class='box box-information']//a")
+        self.account_change_password_link = (By.XPATH, "//a[contains(@href, 'changepass')]")
 
     def account_page_sign_out(self):
         self.driver.find_element(*self.account_page_sign_out_link).click()

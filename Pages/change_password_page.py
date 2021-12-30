@@ -10,7 +10,6 @@ class ChangePasswordPage:
         self.change_password_page_current_password_input = (By.ID, "current-password")
         self.change_password_page_new_password_input = (By.ID, "password")
         self.change_password_page_confirm_new_password_input = (By.ID, "password-confirmation")
-        self.change_password_page_save_button = (By.XPATH, "//button[@title='Save']")
         self.change_password_page_error_message_text = (By.XPATH, "//div[@class='mage-error']")
 
     def change_password_page_fill_the_form(self, current_password, new_password, confirm_new_password):

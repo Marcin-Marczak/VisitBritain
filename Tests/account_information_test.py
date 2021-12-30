@@ -13,7 +13,7 @@ from Config.generate_test_data import *
 class AccountInformationSetup:
     def account_information_setup(self):
         main_page = MainPage(self.driver)
-        main_page.open_main_page_and_close_cookies()
+        main_page.open_main_page_and_accept_cookies()
         main_page.main_page_go_to_sign_in_page()
         sign_in = SignInPage(self.driver)
         sign_in.sign_in_page_fill_the_form(vtd()["email"], env()["password"])
