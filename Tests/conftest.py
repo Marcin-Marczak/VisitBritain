@@ -2,9 +2,8 @@ import pytest
 import os
 from Screenshot import Screenshot_Clipping
 from datetime import datetime
-from Config.config_reader import configuration_data as cd
 from Drivers.browser_random_choice import BrowserRandomChoice
-
+from Screenshots.get_screenshots_path import *
 ob = Screenshot_Clipping.Screenshot()
 
 
@@ -18,7 +17,7 @@ def setup(request):
     yield
     if request.session.testsfailed != before_failed:
         current_test_name = os.environ.get("PYTEST_CURRENT_TEST").split(":")[-1].split(" ")[0].replace("test_", "")
-        screenshots_path = cd()["screenshots_path"]
+        screenshots_path = get_screenshots_path()
         timestamp = datetime.now().strftime("%Y_%m_%d_%H_%M_%S") + "_" + current_test_name
         screenshot_name = timestamp + ".png"
         ob.full_Screenshot(driver, save_path=screenshots_path, image_name=screenshot_name)

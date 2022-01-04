@@ -7,8 +7,7 @@
 pip install -r requirements.txt
 ```
 3. Set pytest as a default test runner (recommended IDE is PyCharm: <https://www.jetbrains.com/pycharm/>)
-4. Change necessary paths in Config/configuration_data.json file
-5. Provide necessary data in non-tracked env.json file :
+4. Provide necessary data in non-tracked env.json file :
 ```json
 {
     "password": ""

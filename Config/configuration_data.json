@@ -1,5 +1,4 @@
-{   "screenshots_path": "C:\\Users\\marci\\PycharmProjects\\VisitBritain\\Screenshots",
-    "base_url" : "https://www.visitbritainshop.com/us/en",
+{   "base_url" : "https://www.visitbritainshop.com/us/en",
 
     "timeout": 20,
     "pool_frequency": 0.25
