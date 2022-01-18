@@ -73,7 +73,8 @@ class TestAccountInformation(AccountInformationSetup):
                                                                              last_name=last_name(),
                                                                              submit_or_go_back_without_submit="submit")
         validation_error_text = edit_account_information.edit_account_information_page_get_validation_error_text()
-        assert validation_error_text[0].get_attribute("textContent") == vet()["required_field_error_text"]
+        validation_error_text = validation_error_text[0].get_attribute("textContent")
+        assert validation_error_text == vet()["required_field_error_text"]
 
     def test_change_account_information_last_name_blank(self):
         AccountInformationSetup.account_information_setup(self)
@@ -85,7 +86,8 @@ class TestAccountInformation(AccountInformationSetup):
                                                                              last_name="",
                                                                              submit_or_go_back_without_submit="submit")
         validation_error_text = edit_account_information.edit_account_information_page_get_validation_error_text()
-        assert validation_error_text[0].get_attribute("textContent") == vet()["required_field_error_text"]
+        validation_error_text = validation_error_text[0].get_attribute("textContent")
+        assert validation_error_text == vet()["required_field_error_text"]
 
     def test_change_account_information_first_name_and_last_name_blank(self):
         AccountInformationSetup.account_information_setup(self)
@@ -96,7 +98,8 @@ class TestAccountInformation(AccountInformationSetup):
                                                                              first_name="",
                                                                              last_name="",
                                                                              submit_or_go_back_without_submit="submit")
-        validation_error_text = edit_account_information.edit_account_information_page_get_validation_error_text()
-        assert len(validation_error_text) == 2
-        for i in validation_error_text:
+        validation_error_texts = edit_account_information.edit_account_information_page_get_validation_error_text()
+        number_of_validation_error_texts = len(validation_error_texts)
+        assert number_of_validation_error_texts == 2
+        for i in validation_error_texts:
             assert vet()["required_field_error_text"] in i.get_attribute("textContent")

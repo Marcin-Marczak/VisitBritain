@@ -29,5 +29,6 @@ class EditAccountInformationPage:
             self.driver.find_element(*self.edit_account_information_page_go_back_link).click()
 
     def edit_account_information_page_get_validation_error_text(self):
-        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(lambda error: "." in self.driver.find_elements(*self.edit_account_information_page_error_message_text)[0].text)
-        return self.driver.find_elements(*self.edit_account_information_page_error_message_text)
+        error = self.driver.find_elements(*self.edit_account_information_page_error_message_text)
+        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(lambda errors: "." in error[0].text)
+        return error

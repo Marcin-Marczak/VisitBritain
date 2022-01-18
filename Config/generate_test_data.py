@@ -17,7 +17,8 @@ def last_name():
 
 def name_prefix():
     prefixes = ["Mr", "Mrs", "Miss", "Ms", "Master", "Fr", "Rev", "Dr"]
-    return random.choice(prefixes)
+    prefix = random.choice(prefixes)
+    return prefix
 
 
 def phone_number():

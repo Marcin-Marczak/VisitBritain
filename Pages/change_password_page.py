@@ -19,5 +19,6 @@ class ChangePasswordPage:
         self.driver.find_element(*self.change_password_page_confirm_new_password_input).send_keys(Keys.ENTER)
 
     def change_password_page_get_validation_error_text(self):
-        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(lambda error: "." in self.driver.find_elements(*self.change_password_page_error_message_text)[0].text)
-        return self.driver.find_elements(*self.change_password_page_error_message_text)
+        error = self.driver.find_elements(*self.change_password_page_error_message_text)
+        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(lambda errors: "." in error[0].text)
+        return error

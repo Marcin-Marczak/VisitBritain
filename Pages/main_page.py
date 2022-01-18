@@ -15,11 +15,13 @@ class MainPage:
         self.driver.get(cd()["base_url"])
         self.driver.implicitly_wait(20)
         sleep(1)
-        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(ec.element_to_be_clickable, self.driver.find_element(*self.main_page_accept_cookies_button))
-        self.driver.find_element(*self.main_page_accept_cookies_button).click()
+        cookies = self.driver.find_element(*self.main_page_accept_cookies_button)
+        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(ec.element_to_be_clickable, cookies)
+        cookies.click()
 
     def main_page_go_to_sign_in_page(self):
         current_url = self.driver.current_url
-        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(ec.visibility_of_element_located, self.driver.find_element(*self.main_page_sign_in_link))
-        self.driver.find_element(*self.main_page_sign_in_link).click()
-        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(lambda url_has_changed: self.driver.current_url != current_url)
+        sign_in = self.driver.find_element(*self.main_page_sign_in_link)
+        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(ec.visibility_of_element_located, sign_in)
+        sign_in.click()
+        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(lambda url: self.driver.current_url != current_url)
