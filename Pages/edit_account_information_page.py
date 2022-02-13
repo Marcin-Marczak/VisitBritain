@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.ui import Select
-from Config.config_reader import configuration_data as cd
+from Config.config_reader import get_config_data as data
 
 
 class EditAccountInformationPage:
@@ -30,5 +30,7 @@ class EditAccountInformationPage:
 
     def edit_account_information_page_get_validation_error_text(self):
         error = self.driver.find_elements(*self.edit_account_information_page_error_message_text)
-        WebDriverWait(self.driver, cd()["timeout"], cd()["pool_frequency"]).until(lambda errors: "." in error[0].text)
+        wait = WebDriverWait(self.driver, data("configuration_data.json")["timeout"],
+                             data("configuration_data.json")["pool_frequency"])
+        wait.until(lambda errors: "." in error[0].text)
         return error

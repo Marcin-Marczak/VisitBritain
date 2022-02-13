@@ -4,8 +4,7 @@ from Pages.sign_in_page import SignInPage
 from Pages.account_page import AccountPage
 from Pages.address_book_page import AddressBookPage
 from Pages.add_new_address_page import AddNewAddressPage
-from Config.config_reader import valid_test_data as vtd
-from Config.config_reader import env
+from Config.config_reader import get_config_data as data
 from Config.generate_test_data import *
 
 
@@ -17,7 +16,7 @@ class TestAddress:
         main_page.open_main_page_and_accept_cookies()
         main_page.main_page_go_to_sign_in_page()
         sign_in = SignInPage(self.driver)
-        sign_in.sign_in_page_fill_the_form(vtd()["email"], env()["password"])
+        sign_in.sign_in_page_fill_the_form(data("valid_test_data.json")["email"], data("env.json")["password"])
         account = AccountPage(self.driver)
         account.account_page_go_to_address_book_page()
         address_book = AddressBookPage(self.driver)

@@ -2,8 +2,7 @@ import pytest
 from Pages.main_page import MainPage
 from Pages.sign_in_page import SignInPage
 from Pages.account_page import AccountPage
-from Config.config_reader import valid_test_data as vtd
-from Config.config_reader import env
+from Config.config_reader import get_config_data as data
 
 
 @pytest.mark.usefixtures("setup")
@@ -23,7 +22,7 @@ class TestSignInProcess(SignInProcessSetup):
     def test_sign_in_process_valid_username_valid_password(self):
         SignInProcessSetup.sign_in_process_setup(self)
         sign_in = SignInPage(self.driver)
-        sign_in.sign_in_page_fill_the_form(vtd()["email"], env()["password"])
+        sign_in.sign_in_page_fill_the_form(data("valid_test_data.json")["email"], data("env.json")["password"])
         assert "Default Billing Address" in self.driver.page_source
         account = AccountPage(self.driver)
         account_url = self.driver.current_url

@@ -1,9 +1,9 @@
 import pytest
-import os
 from Screenshot import Screenshot_Clipping
 from datetime import datetime
 from Drivers.browser_random_choice import BrowserRandomChoice
 from Screenshots.get_screenshots_path import *
+
 ob = Screenshot_Clipping.Screenshot()
 
 

@@ -3,9 +3,7 @@ from Pages.main_page import MainPage
 from Pages.sign_in_page import SignInPage
 from Pages.account_page import AccountPage
 from Pages.edit_account_information_page import EditAccountInformationPage
-from Config.config_reader import valid_test_data as vtd
-from Config.config_reader import validation_error_texts as vet
-from Config.config_reader import env
+from Config.config_reader import get_config_data as data
 from Config.generate_test_data import *
 
 
@@ -16,7 +14,7 @@ class AccountInformationSetup:
         main_page.open_main_page_and_accept_cookies()
         main_page.main_page_go_to_sign_in_page()
         sign_in = SignInPage(self.driver)
-        sign_in.sign_in_page_fill_the_form(vtd()["email"], env()["password"])
+        sign_in.sign_in_page_fill_the_form(data("valid_test_data.json")["email"], data("env.json")["password"])
 
 
 class TestAccountInformation(AccountInformationSetup):
@@ -74,7 +72,7 @@ class TestAccountInformation(AccountInformationSetup):
                                                                              submit_or_go_back_without_submit="submit")
         validation_error_text = edit_account_information.edit_account_information_page_get_validation_error_text()
         validation_error_text = validation_error_text[0].get_attribute("textContent")
-        assert validation_error_text == vet()["required_field_error_text"]
+        assert validation_error_text == data("validation_error_texts.json")["required_field_error_text"]
 
     def test_change_account_information_last_name_blank(self):
         AccountInformationSetup.account_information_setup(self)
@@ -87,7 +85,7 @@ class TestAccountInformation(AccountInformationSetup):
                                                                              submit_or_go_back_without_submit="submit")
         validation_error_text = edit_account_information.edit_account_information_page_get_validation_error_text()
         validation_error_text = validation_error_text[0].get_attribute("textContent")
-        assert validation_error_text == vet()["required_field_error_text"]
+        assert validation_error_text == data("validation_error_texts.json")["required_field_error_text"]
 
     def test_change_account_information_first_name_and_last_name_blank(self):
         AccountInformationSetup.account_information_setup(self)
@@ -102,4 +100,4 @@ class TestAccountInformation(AccountInformationSetup):
         number_of_validation_error_texts = len(validation_error_texts)
         assert number_of_validation_error_texts == 2
         for i in validation_error_texts:
-            assert vet()["required_field_error_text"] in i.get_attribute("textContent")
+            assert data("validation_error_texts.json")["required_field_error_text"] in i.get_attribute("textContent")
