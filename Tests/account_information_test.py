@@ -1,4 +1,5 @@
 import pytest
+from Pages.base_page import BasePage
 from Pages.main_page import MainPage
 from Pages.sign_in_page import SignInPage
 from Pages.account_page import AccountPage
@@ -70,8 +71,9 @@ class TestAccountInformation(AccountInformationSetup):
                                                                              first_name="",
                                                                              last_name=last_name(),
                                                                              submit_or_go_back_without_submit="submit")
-        validation_error_text = edit_account_information.edit_account_information_page_get_validation_error_text()
-        validation_error_text = validation_error_text[0].get_attribute("textContent")
+        base_page = BasePage(self.driver)
+        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_text = validation_error_texts[0].get_attribute("textContent")
         assert validation_error_text == data("validation_error_texts.json")["required_field_error_text"]
 
     def test_change_account_information_last_name_blank(self):
@@ -83,8 +85,9 @@ class TestAccountInformation(AccountInformationSetup):
                                                                              first_name=first_name(),
                                                                              last_name="",
                                                                              submit_or_go_back_without_submit="submit")
-        validation_error_text = edit_account_information.edit_account_information_page_get_validation_error_text()
-        validation_error_text = validation_error_text[0].get_attribute("textContent")
+        base_page = BasePage(self.driver)
+        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_text = validation_error_texts[0].get_attribute("textContent")
         assert validation_error_text == data("validation_error_texts.json")["required_field_error_text"]
 
     def test_change_account_information_first_name_and_last_name_blank(self):
@@ -96,7 +99,8 @@ class TestAccountInformation(AccountInformationSetup):
                                                                              first_name="",
                                                                              last_name="",
                                                                              submit_or_go_back_without_submit="submit")
-        validation_error_texts = edit_account_information.edit_account_information_page_get_validation_error_text()
+        base_page = BasePage(self.driver)
+        validation_error_texts = base_page.base_page_get_validation_error_texts()
         number_of_validation_error_texts = len(validation_error_texts)
         assert number_of_validation_error_texts == 2
         for i in validation_error_texts:

@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.support.wait import WebDriverWait
 from time import sleep
+from Pages.base_page import BasePage
 from Config.config_reader import get_config_data as data
 
 
@@ -16,14 +16,14 @@ class MainPage:
         self.driver.implicitly_wait(20)
         sleep(1)
         cookies = self.driver.find_element(*self.main_page_accept_cookies_button)
-        wait = WebDriverWait(self.driver, data("configuration_data.json")["timeout"],
-                             data("configuration_data.json")["pool_frequency"])
+        base_page = BasePage(self.driver)
+        wait = base_page.base_page_set_web_driver_wait()
         wait.until(ec.element_to_be_clickable, cookies)
         cookies.click()
 
     def main_page_go_to_sign_in_page(self):
-        wait = WebDriverWait(self.driver, data("configuration_data.json")["timeout"],
-                             data("configuration_data.json")["pool_frequency"])
+        base_page = BasePage(self.driver)
+        wait = base_page.base_page_set_web_driver_wait()
         current_url = self.driver.current_url
         sign_in = self.driver.find_element(*self.main_page_sign_in_link)
         wait.until(ec.visibility_of_element_located, sign_in)
