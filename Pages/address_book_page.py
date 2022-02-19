@@ -13,14 +13,14 @@ class AddressBookPage:
         sleep(0.5)
         self.driver.find_element(*self.address_book_page_add_new_address_button).click()
 
-    def address_book_page_get_street_address_line_1_from_additional_addresses(self):
-        street_address_line_1 = self.driver.find_element(*self.address_book_additional_address_street_address)
-        street_address_line_1 = street_address_line_1.get_attribute("textContent")
-        street_address_line_1 = street_address_line_1[:street_address_line_1.find(",")]
-        return street_address_line_1
+    def address_book_page_get_street_address_line1_from_additional_addresses(self):
+        street_address_line1 = self.driver.find_element(*self.address_book_additional_address_street_address)
+        street_address_line1 = street_address_line1.get_attribute("textContent")
+        street_address_line1 = street_address_line1[:street_address_line1.find(",")]
+        return street_address_line1
 
-    def address_book_page_get_street_address_line_2_from_additional_addresses(self):
-        street_address_line_2 = self.driver.find_element(*self.address_book_additional_address_street_address)
-        street_address_line_2 = street_address_line_2.get_attribute("textContent")
-        street_address_line_2 = street_address_line_2[street_address_line_2.find(",")+2:]
-        return street_address_line_2
+    def address_book_page_get_street_address_line2_from_additional_addresses(self):
+        street_address_line2 = self.driver.find_element(*self.address_book_additional_address_street_address)
+        street_address_line2 = street_address_line2.get_attribute("textContent")
+        street_address_line2 = street_address_line2[street_address_line2.find(",")+2:]
+        return street_address_line2

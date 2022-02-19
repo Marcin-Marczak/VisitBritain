@@ -22,7 +22,9 @@ class TestSignInProcess(SignInProcessSetup):
     def test_sign_in_process_valid_username_valid_password(self):
         SignInProcessSetup.sign_in_process_setup(self)
         sign_in = SignInPage(self.driver)
-        sign_in.sign_in_page_fill_the_form(data("valid_test_data.json")["email"], data("env.json")["password"])
+        email = data("valid_test_data.json")["email"]
+        password = data("env.json")["password"]
+        sign_in.sign_in_page_fill_the_form(email, password)
         assert "Default Billing Address" in self.driver.page_source
         account = AccountPage(self.driver)
         account_url = self.driver.current_url

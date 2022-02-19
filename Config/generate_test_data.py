@@ -3,42 +3,46 @@ from faker import Faker
 fake = Faker("en")
 
 
-def unique_random_word():
+def generate_unique_random_word():
     return fake.word()
 
 
-def first_name():
+def generate_first_name():
     return fake.first_name_male()
 
 
-def last_name():
+def generate_last_name():
     return fake.last_name_male()
 
 
-def name_prefix():
+def generate_name_prefix():
     prefixes = ["Mr", "Mrs", "Miss", "Ms", "Master", "Fr", "Rev", "Dr"]
     prefix = random.choice(prefixes)
     return prefix
 
 
-def phone_number():
-    return random.randint(100000000, 999999999)
+def generate_phone_number():
+    start = 100000000
+    stop = 999999999
+    return random.randint(start, stop)
 
 
-def street_address_line_1():
-    street_address_line1 = fake.street_address()
-    street_address_line1 = "".join([i for i in street_address_line1 if not i.isdigit()])
-    street_address_line1 = street_address_line1.strip() + " Street"
-    return street_address_line1
+def generate_street_address_line1():
+    street_address_line_1 = fake.street_address()
+    street_address_line_1 = "".join([i for i in street_address_line_1 if not i.isdigit()])
+    street_address_line_1 = street_address_line_1.strip() + " Street"
+    return street_address_line_1
 
 
-def street_address_line_2():
-    return str(random.randint(1, 99999))
+def generate_street_address_line2():
+    start = 1
+    stop = 99999
+    return str(random.randint(start, stop))
 
 
-def city():
+def generate_city():
     return fake.city()
 
 
-def postcode():
+def generate_postcode():
     return fake.postcode()

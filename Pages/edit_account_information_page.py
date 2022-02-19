@@ -11,7 +11,8 @@ class EditAccountInformationPage:
         self.edit_account_information_page_save_button = (By.CSS_SELECTOR, "[title='Save']")
         self.edit_account_information_page_go_back_link = (By.XPATH, "//a[@class='action back']")
 
-    def edit_account_information_page_fill_the_form(self, name_prefix, first_name, last_name, submit_or_go_back_without_submit):
+    def edit_account_information_page_fill_the_form(self, name_prefix, first_name, last_name,
+                                                    submit_or_go_back_without_submit):
         self.driver.execute_script("window.scrollTo(0, 500)")
         self.driver.find_element(*self.edit_account_information_page_name_prefix_select).click()
         select = Select(self.driver.find_element(*self.edit_account_information_page_name_prefix_select))
