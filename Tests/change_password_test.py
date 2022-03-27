@@ -30,7 +30,7 @@ class TestChangePassword(ChangePasswordSetup):
         invalid_password = data("invalid_test_data.json")["invalid_password_lower_case"]
         change_password.change_password_page_fill_the_form(current_password, invalid_password, invalid_password)
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].text
         invalid_new_password_error_text = data("validation_error_texts.json")["invalid_new_password_error_text"]
         assert validation_error_text == invalid_new_password_error_text
@@ -42,7 +42,7 @@ class TestChangePassword(ChangePasswordSetup):
         invalid_password = data("invalid_test_data.json")["invalid_password_digits"]
         change_password.change_password_page_fill_the_form(current_password, invalid_password, invalid_password)
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].text
         assert validation_error_text == data("validation_error_texts.json")["invalid_new_password_error_text"]
 
@@ -53,7 +53,7 @@ class TestChangePassword(ChangePasswordSetup):
         invalid_password = data("invalid_test_data.json")["invalid_password_lower_and_upper_case"]
         change_password.change_password_page_fill_the_form(current_password, invalid_password, invalid_password)
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].text
         invalid_new_password_error_text = data("validation_error_texts.json")["invalid_new_password_error_text"]
         assert validation_error_text == invalid_new_password_error_text
@@ -65,7 +65,7 @@ class TestChangePassword(ChangePasswordSetup):
         invalid_password = data("invalid_test_data.json")["invalid_password_digits_and_special_characters"]
         change_password.change_password_page_fill_the_form(current_password, invalid_password, invalid_password)
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].get_attribute("textContent")
         invalid_new_password_error_text = data("validation_error_texts.json")["invalid_new_password_error_text"]
         assert validation_error_text == invalid_new_password_error_text
@@ -78,7 +78,7 @@ class TestChangePassword(ChangePasswordSetup):
         confirm_new_password = data("valid_test_data.json")["valid_new_password_or_confirm_new_password"]
         change_password.change_password_page_fill_the_form(current_password, new_password, confirm_new_password)
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text_1 = validation_error_texts[0].get_attribute("textContent")
         validation_error_text_2 = validation_error_texts[1].get_attribute("textContent")
         too_short_new_password_error_text = data("validation_error_texts.json")["too_short_new_password_error_text"]
@@ -94,7 +94,7 @@ class TestChangePassword(ChangePasswordSetup):
         invalid_password = data("invalid_test_data.json")["invalid_password_7_characters"]
         change_password.change_password_page_fill_the_form(current_password, invalid_password, invalid_password)
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].get_attribute("textContent")
         too_short_new_password_error_text = data("validation_error_texts.json")["too_short_new_password_error_text"]
         assert validation_error_text == too_short_new_password_error_text
@@ -107,7 +107,7 @@ class TestChangePassword(ChangePasswordSetup):
         confirm_new_password = data("valid_test_data.json")["valid_new_password_or_confirm_new_password"]
         change_password.change_password_page_fill_the_form(current_password, new_password, confirm_new_password)
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].get_attribute("textContent")
         required_field_error_text = data("validation_error_texts.json")["required_field_error_text"]
         assert validation_error_text == required_field_error_text
@@ -120,7 +120,7 @@ class TestChangePassword(ChangePasswordSetup):
         confirm_new_password = ""
         change_password.change_password_page_fill_the_form(current_password, new_password, confirm_new_password)
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].text
         required_field_error_text = data("validation_error_texts.json")["required_field_error_text"]
         assert validation_error_text == required_field_error_text
@@ -133,7 +133,7 @@ class TestChangePassword(ChangePasswordSetup):
         confirm_new_password = generate_unique_random_word()
         change_password.change_password_page_fill_the_form(current_password, new_password, confirm_new_password)
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].text
         confirm_new_password_doesnt_match_new_password_error_text = \
             data("validation_error_texts.json")["confirm_new_password_doesnt_match_new_password_error_text"]

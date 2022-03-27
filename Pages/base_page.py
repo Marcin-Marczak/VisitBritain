@@ -8,13 +8,16 @@ class BasePage:
         self.driver = driver
         self.base_page_error_message_text = (By.XPATH, "//div[@class='mage-error']")
 
-    def base_page_set_web_driver_wait(self):
-        wait = WebDriverWait(self.driver, data("configuration_data.json")["timeout"],
-                             data("configuration_data.json")["pool_frequency"])
-        return wait
+    def set_web_driver_wait(self):
+        timeout = data("configuration_data.json")["timeout"]
+        pool_frequency = data("configuration_data.json")["pool_frequency"]
 
-    def base_page_get_validation_error_texts(self):
+        return WebDriverWait(self.driver, timeout, pool_frequency)
+
+    def get_validation_error_texts(self):
         errors = self.driver.find_elements(*self.base_page_error_message_text)
-        wait = BasePage.base_page_set_web_driver_wait(self)
+
+        wait = BasePage.set_web_driver_wait(self)
         wait.until(lambda errors_text: "." in errors[0].text)
+
         return errors

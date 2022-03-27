@@ -17,13 +17,13 @@ class MainPage:
         sleep(1)
         cookies = self.driver.find_element(*self.main_page_accept_cookies_button)
         base_page = BasePage(self.driver)
-        wait = base_page.base_page_set_web_driver_wait()
+        wait = base_page.set_web_driver_wait()
         wait.until(ec.element_to_be_clickable, cookies)
         cookies.click()
 
     def main_page_go_to_sign_in_page(self):
         base_page = BasePage(self.driver)
-        wait = base_page.base_page_set_web_driver_wait()
+        wait = base_page.set_web_driver_wait()
         current_url = self.driver.current_url
         sign_in = self.driver.find_element(*self.main_page_sign_in_link)
         wait.until(ec.visibility_of_element_located, sign_in)

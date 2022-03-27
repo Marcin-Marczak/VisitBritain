@@ -73,7 +73,7 @@ class TestAccountInformation(AccountInformationSetup):
         edit_account_information.edit_account_information_page_fill_the_form(name_prefix_to_input, first_name_to_input,
                                                                              last_name_to_input, "submit")
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].get_attribute("textContent")
         required_field_error_text = data("validation_error_texts.json")["required_field_error_text"]
         assert validation_error_text == required_field_error_text
@@ -89,7 +89,7 @@ class TestAccountInformation(AccountInformationSetup):
         edit_account_information.edit_account_information_page_fill_the_form(name_prefix_to_input, first_name_to_input,
                                                                              last_name_to_input, "submit")
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].get_attribute("textContent")
         required_field_error_text = data("validation_error_texts.json")["required_field_error_text"]
         assert validation_error_text == required_field_error_text
@@ -105,7 +105,7 @@ class TestAccountInformation(AccountInformationSetup):
         edit_account_information.edit_account_information_page_fill_the_form(name_prefix_to_input, first_name_to_input,
                                                                              last_name_to_input, "submit")
         base_page = BasePage(self.driver)
-        validation_error_texts = base_page.base_page_get_validation_error_texts()
+        validation_error_texts = base_page.get_validation_error_texts()
         number_of_validation_error_texts = len(validation_error_texts)
         required_field_error_text = data("validation_error_texts.json")["required_field_error_text"]
         assert number_of_validation_error_texts == 2
