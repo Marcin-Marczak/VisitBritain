@@ -15,16 +15,23 @@ class BrowserRandomChoice:
         browsers = ["chrome", "firefox", "edge"]
         browser = random.choices(browsers, weights=[65, 25, 10], k=1)
 
+        chrome_manager = ChromeDriverManager().install()
+        firefox_manager = GeckoDriverManager().install()
+        edge_manager = EdgeChromiumDriverManager().install()
+
         if browser == ['chrome']:
             chrome_options = ChromeOptions()
             chrome_options.add_argument("--headless")
-            return webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+            return webdriver.Chrome(executable_path=chrome_manager, options=chrome_options)
+
         elif browser == ['firefox']:
             firefox_options = FirefoxOptions()
             firefox_options.headless = True
-            return webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=firefox_options, service_log_path=os.devnull)
+            return webdriver.Firefox(executable_path=firefox_manager, options=firefox_options,
+                                     service_log_path=os.devnull)
+
         elif browser == ['edge']:
             edge_options = EdgeOptions()
             edge_options.use_chromium = True
             edge_options.add_argument("headless")
-            return Edge(executable_path=EdgeChromiumDriverManager().install(), options=edge_options)
+            return Edge(executable_path=edge_manager, options=edge_options)
