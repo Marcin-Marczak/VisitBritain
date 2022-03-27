@@ -13,7 +13,7 @@ class ChangePasswordSetup:
     def change_password_setup(self):
         main_page = MainPage(self.driver)
         main_page.open_main_page_and_accept_cookies()
-        main_page.main_page_go_to_sign_in_page()
+        main_page.go_to_sign_in_page()
         sign_in = SignInPage(self.driver)
         email = data("valid_test_data.json")["email"]
         password = data("env.json")["password"]

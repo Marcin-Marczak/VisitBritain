@@ -10,7 +10,7 @@ class SignInProcessSetup:
     def sign_in_process_setup(self):
         main_page = MainPage(self.driver)
         main_page.open_main_page_and_accept_cookies()
-        main_page.main_page_go_to_sign_in_page()
+        main_page.go_to_sign_in_page()
 
 
 class TestSignInProcess(SignInProcessSetup):
