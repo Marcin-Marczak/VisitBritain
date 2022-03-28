@@ -21,17 +21,23 @@ class BrowserRandomChoice:
 
         if browser == ['chrome']:
             chrome_options = ChromeOptions()
+
             chrome_options.add_argument("--headless")
+
             return webdriver.Chrome(executable_path=chrome_manager, options=chrome_options)
 
         elif browser == ['firefox']:
             firefox_options = FirefoxOptions()
+
             firefox_options.headless = True
+
             return webdriver.Firefox(executable_path=firefox_manager, options=firefox_options,
                                      service_log_path=os.devnull)
 
         elif browser == ['edge']:
             edge_options = EdgeOptions()
+
             edge_options.use_chromium = True
             edge_options.add_argument("headless")
+
             return Edge(executable_path=edge_manager, options=edge_options)

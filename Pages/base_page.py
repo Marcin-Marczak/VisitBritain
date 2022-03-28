@@ -6,7 +6,11 @@ from Config.config_reader import get_config_data as data
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
+
         self.base_page_error_message_text = (By.XPATH, "//div[@class='mage-error']")
+
+    def click_on_element(self, *element):
+        self.driver.find_element(*element).click()
 
     def set_web_driver_wait(self):
         timeout = data("configuration_data.json")["timeout"]

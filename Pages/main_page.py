@@ -1,3 +1,4 @@
+from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from Pages.base_page import BasePage
@@ -9,25 +10,22 @@ class MainPage(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-        self.main_page_sign_in_link = (By.ID, "block-account-link-block")
-        self.main_page_accept_cookies_button = (By.ID, "onetrust-accept-btn-handler")
+        self.sign_in_link = (By.ID, "block-account-link-block")
+        self.accept_cookies_button = (By.ID, "onetrust-accept-btn-handler")
 
     def open_main_page_and_accept_cookies(self):
-        wait = self.set_web_driver_wait()
         base_url = data("configuration_data.json")["base_url"]
 
         self.driver.get(base_url)
-
-        cookies = self.driver.find_element(*self.main_page_accept_cookies_button)
-        wait.until(ec.element_to_be_clickable, cookies)
-        cookies.click()
+        sleep(1)
+        self.click_on_element(*self.accept_cookies_button)
 
     def go_to_sign_in_page(self):
         wait = self.set_web_driver_wait()
-        sign_in = self.driver.find_element(*self.main_page_sign_in_link)
+        sign_in = self.driver.find_element(*self.sign_in_link)
         current_url = self.driver.current_url
 
         wait.until(ec.visibility_of_element_located, sign_in)
-        sign_in.click()
+        self.click_on_element(*self.sign_in_link)
 
         wait.until(lambda url: self.driver.current_url != current_url)

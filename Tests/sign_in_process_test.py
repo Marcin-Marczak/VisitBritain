@@ -22,13 +22,14 @@ class TestSignInProcess:
     def test_sign_in_with_valid_data(self):
         sign_in = SignInPage(self.driver)
         account = AccountPage(self.driver)
+
         email = data("valid_test_data.json")["email"]
         password = data("env.json")["password"]
 
         TestSignInProcess.__sign_in_process_setup(self)
 
-        sign_in.sign_in_page_fill_the_form(email, password)
+        sign_in.fill_form_submit(email, password)
         assert "Default Billing Address" in self.driver.page_source
 
-        account.account_page_sign_out()
+        account.sign_out()
         assert "Login" in self.driver.page_source
