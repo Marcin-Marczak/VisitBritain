@@ -155,7 +155,7 @@ class TestChangePassword:
         base_page = BasePage(self.driver)
 
         current_password = data("env.json")["password"]
-        new_password = data("valid_test_data.json")["valid_new_password_or_confirm_new_password"],
+        new_password = data("valid_test_data.json")["valid_new_password_or_confirm_new_password"]
         confirm_new_password = ""
 
         TestChangePassword.__change_password_setup(self)
@@ -172,7 +172,7 @@ class TestChangePassword:
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)
 
-        current_password = data("env.json")["password"],
+        current_password = data("env.json")["password"]
         new_password = data("valid_test_data.json")["valid_new_password_or_confirm_new_password"]
         confirm_new_password = generate_random_word()
 
