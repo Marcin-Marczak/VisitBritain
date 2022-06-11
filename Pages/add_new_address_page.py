@@ -4,25 +4,26 @@ from selenium.webdriver.common.keys import Keys
 
 
 class AddNewAddressPage:
+
+    PHONE_NUMBER_INPUT = (By.ID, "telephone")
+    STREET_ADDRESS_LINE1_INPUT = (By.ID, "street_1")
+    STREET_ADDRESS_LINE2_INPUT = (By.ID, "street_2")
+    COUNTRY_SELECT = (By.ID, "country")
+    CITY_INPUT = (By.ID, "city")
+    POSTCODE_INPUT = (By.ID, "zip")
+
     def __init__(self, driver):
         self.driver = driver
 
-        self.phone_number_input = (By.ID, "telephone")
-        self.street_address_line1_input = (By.ID, "street_1")
-        self.street_address_line2_input = (By.ID, "street_2")
-        self.country_select = (By.ID, "country")
-        self.city_input = (By.ID, "city")
-        self.postcode_input = (By.ID, "zip")
-
     def fill_form_submit(self, phone_number, street_address_line1, street_address_line2, country_value, city, postcode):
-        self.driver.find_element(*self.phone_number_input).send_keys(phone_number)
-        self.driver.find_element(*self.street_address_line1_input).send_keys(street_address_line1)
-        self.driver.find_element(*self.street_address_line2_input).send_keys(street_address_line2)
+        self.driver.find_element(*self.PHONE_NUMBER_INPUT).send_keys(phone_number)
+        self.driver.find_element(*self.STREET_ADDRESS_LINE1_INPUT).send_keys(street_address_line1)
+        self.driver.find_element(*self.STREET_ADDRESS_LINE2_INPUT).send_keys(street_address_line2)
 
-        select = Select(self.driver.find_element(*self.country_select))
+        select = Select(self.driver.find_element(*self.COUNTRY_SELECT))
         select.select_by_value(country_value)
 
-        self.driver.find_element(*self.city_input).send_keys(city)
-        self.driver.find_element(*self.postcode_input).send_keys(postcode)
+        self.driver.find_element(*self.CITY_INPUT).send_keys(city)
+        self.driver.find_element(*self.POSTCODE_INPUT).send_keys(postcode)
 
-        self.driver.find_element(*self.postcode_input).send_keys(Keys.ENTER)
+        self.driver.find_element(*self.POSTCODE_INPUT).send_keys(Keys.ENTER)

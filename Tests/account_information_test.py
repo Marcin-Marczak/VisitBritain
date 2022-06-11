@@ -88,7 +88,7 @@ class TestAccountInformation:
 
         validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].get_attribute("textContent")
-        required_field_error_text = data("validation_error_texts.json")["required_field_error_text"]
+        required_field_error_text = data("error_texts.json")["required_field_error_text"]
 
         assert validation_error_text == required_field_error_text
 
@@ -110,7 +110,7 @@ class TestAccountInformation:
 
         validation_error_texts = base_page.get_validation_error_texts()
         validation_error_text = validation_error_texts[0].get_attribute("textContent")
-        required_field_error_text = data("validation_error_texts.json")["required_field_error_text"]
+        required_field_error_text = data("error_texts.json")["required_field_error_text"]
 
         assert validation_error_text == required_field_error_text
 
@@ -132,7 +132,7 @@ class TestAccountInformation:
 
         validation_error_texts = base_page.get_validation_error_texts()
         number_of_validation_error_texts = len(validation_error_texts)
-        required_field_error_text = data("validation_error_texts.json")["required_field_error_text"]
+        required_field_error_text = data("error_texts.json")["required_field_error_text"]
 
         assert number_of_validation_error_texts == 2
         for i in validation_error_texts:
