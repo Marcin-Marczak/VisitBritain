@@ -1,35 +1,26 @@
 import pytest
-from Pages.main_page import MainPage
-from Pages.sign_in_page import SignInPage
-from Pages.account_page import AccountPage
 from Config.config_reader import get_config_data as data
+from conftest import POM
 
 
 @pytest.mark.usefixtures("setup")
 class TestSignInProcess:
-    def __sign_in_process_setup(self):
-        main_page = MainPage(self.driver)
-
-        main_page.open_main_page_and_accept_cookies()
-        main_page.go_to_sign_in_page()
+    def __sign_in_process_setup(pom: POM):
+        pom.main_page.open_main_page_and_accept_cookies()
+        pom.main_page.go_to_sign_in_page()
 
     def test_open_sign_in_page(self):
-        TestSignInProcess.__sign_in_process_setup(self)
-
         assert "login" in self.driver.current_url
 
     @pytest.mark.smoke
-    def test_sign_in_with_valid_data(self):
-        sign_in = SignInPage(self.driver)
-        account = AccountPage(self.driver)
-
+    def test_sign_in_with_valid_data(pom: POM, self=None):
         email = data("valid_test_data.json")["email"]
         password = data("env.json")["password"]
 
         TestSignInProcess.__sign_in_process_setup(self)
 
-        sign_in.fill_form_submit(email, password)
+        pom.sign_in_page.fill_form_submit(email, password)
         assert "Default Billing Address" in self.driver.page_source
 
-        account.sign_out()
+        pom.account_page.sign_out()
         assert "Login" in self.driver.page_source
