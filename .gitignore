@@ -6,3 +6,4 @@ Tests/.pytest_cache
 __pycache__
 venv
 *.log
+/libs/

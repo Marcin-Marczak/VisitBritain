@@ -1,4 +1,5 @@
 import pytest
+import allure
 from Pages.base_page import BasePage
 from Pages.main_page import MainPage
 from Pages.sign_in_page import SignInPage
@@ -25,6 +26,8 @@ class TestChangePassword:
 
         account.go_to_change_password_page()
 
+    @allure.title("Change password - invalid new password lower case")
+    @allure.description("Check if user is not able to change password if new password is with lower case only")
     def test_change_password_invalid_new_password_with_lower_case_only(self):
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)
@@ -42,6 +45,8 @@ class TestChangePassword:
 
         assert validation_error_text == invalid_new_password_error_text
 
+    @allure.title("Change password - invalid new password digits")
+    @allure.description("Check if user is not able to change password if new password is with digits only")
     def test_change_password_invalid_new_password_with_digits_only(self):
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)
@@ -59,6 +64,9 @@ class TestChangePassword:
 
         assert validation_error_text == invalid_new_password_error_text
 
+    @allure.title("Change password - invalid new password lower case and upper case")
+    @allure.description(
+        "Check if user is not able to change password if new password is with lower case and upper case only")
     def test_change_password_invalid_new_password_with_lower_and_upper_case_only(self):
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)
@@ -76,6 +84,9 @@ class TestChangePassword:
 
         assert validation_error_text == invalid_new_password_error_text
 
+    @allure.title("Change password - invalid new password digits and special characters")
+    @allure.description(
+        "Check if user is not able to change password if new password is with digits and special characters only")
     def test_change_password_invalid_new_password_with_digits_and_special_characters_only(self):
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)
@@ -93,6 +104,8 @@ class TestChangePassword:
 
         assert validation_error_text == invalid_new_password_error_text
 
+    @allure.title("Change password - invalid new password too short")
+    @allure.description("Check if user is not able to change password if new password is too short")
     def test_change_password_too_short_new_password(self):
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)
@@ -115,6 +128,9 @@ class TestChangePassword:
         assert validation_error_text_1 == too_short_new_password_error_text
         assert validation_error_text_2 == confirm_new_password_doesnt_match_new_password_error_text
 
+    @allure.title("Change password - invalid new password confirm password too short")
+    @allure.description(
+        "Check if user is not able to change password if new password and confirm new password are too short")
     def test_change_password_too_short_new_password_and_confirm_new_password(self):
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)
@@ -132,6 +148,8 @@ class TestChangePassword:
 
         assert validation_error_text == too_short_new_password_error_text
 
+    @allure.title("Change password - invalid new password blank")
+    @allure.description("Check if user is not able to change password if new password is blank")
     def test_change_password_new_password_blank(self):
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)
@@ -150,6 +168,8 @@ class TestChangePassword:
 
         assert validation_error_text == required_field_error_text
 
+    @allure.title("Change password - invalid confirm new password blank")
+    @allure.description("Check if user is not able to change password if confirm new password is blank")
     def test_change_password_confirm_new_password_blank(self):
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)
@@ -168,6 +188,9 @@ class TestChangePassword:
 
         assert validation_error_text == required_field_error_text
 
+    @allure.title("Change password - new password confirm new password not the same")
+    @allure.description(
+        "Check if user is not able to change password if new password and confirm new password are not the same")
     def test_change_password_confirm_new_password_does_not_match(self):
         change_password = ChangePasswordPage(self.driver)
         base_page = BasePage(self.driver)

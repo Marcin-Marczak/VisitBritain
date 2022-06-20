@@ -1,4 +1,5 @@
 import pytest
+import allure
 from Pages.main_page import MainPage
 from Pages.sign_in_page import SignInPage
 from Pages.account_page import AccountPage
@@ -11,6 +12,8 @@ from Config.generate_test_data import *
 @pytest.mark.usefixtures("setup")
 class TestAddress:
     @pytest.mark.smoke
+    @allure.title("Add new address")
+    @allure.description("Check if user is able to add new address using valid data")
     def test_address_add_new_address(self):
         main_page = MainPage(self.driver)
         sign_in = SignInPage(self.driver)

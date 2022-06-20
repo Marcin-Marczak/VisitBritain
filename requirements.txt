@@ -1,5 +1,6 @@
 allure-pytest==2.9.43
 allure-python-commons==2.9.43
+aspose-words==22.5.0
 atomicwrites==1.4.0
 attrs==20.3.0
 behave==1.2.6
@@ -37,6 +38,7 @@ proglog==0.1.9
 py==1.10.0
 PyMySQL==1.0.2
 pyparsing==2.4.7
+PyPDF2==1.28.2
 pytest==6.2.3
 pytest-failed-screenshot==1.0.2
 pytest-random-order==1.0.4

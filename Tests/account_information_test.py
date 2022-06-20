@@ -1,4 +1,5 @@
 import pytest
+import allure
 from Pages.base_page import BasePage
 from Pages.main_page import MainPage
 from Pages.sign_in_page import SignInPage
@@ -23,6 +24,8 @@ class TestAccountInformation:
         sign_in.fill_form_submit(email, password)
 
     @pytest.mark.smoke
+    @allure.title("Change account information - first name, last name")
+    @allure.description("Check if user is able to update first name and last name")
     def test_change_account_information_valid_first_name_and_last_name(self):
         account_page = AccountPage(self.driver)
         edit_account_information = EditAccountInformationPage(self.driver)
@@ -46,6 +49,8 @@ class TestAccountInformation:
         assert first_name_to_input == first_name_after_submit
         assert last_name_to_input == last_name_after_submit
 
+    @allure.title("Change account information - without submit")
+    @allure.description("Check if user is not able to update data without submit the form")
     def test_change_account_information_valid_first_name_and_last_name_and_go_back_without_submit(self):
         account_page = AccountPage(self.driver)
         edit_account_information = EditAccountInformationPage(self.driver)
@@ -70,6 +75,8 @@ class TestAccountInformation:
         assert first_name_before_test == first_name_after_submit
         assert last_name_before_test == last_name_after_submit
 
+    @allure.title("Change account information - first name blank")
+    @allure.description("Check if user is not able to update data if first name is blank")
     def test_change_account_information_first_name_blank(self):
         account_page = AccountPage(self.driver)
         edit_account_information = EditAccountInformationPage(self.driver)
@@ -92,6 +99,8 @@ class TestAccountInformation:
 
         assert validation_error_text == required_field_error_text
 
+    @allure.title("Change account information - last name blank")
+    @allure.description("Check if user is not able to update data if last name is blank")
     def test_change_account_information_last_name_blank(self):
         account_page = AccountPage(self.driver)
         edit_account_information = EditAccountInformationPage(self.driver)
@@ -114,6 +123,8 @@ class TestAccountInformation:
 
         assert validation_error_text == required_field_error_text
 
+    @allure.title("Change account information - first name, last name blank")
+    @allure.description("Check if user is not able to update data if first name and last name are blank")
     def test_change_account_information_first_name_and_last_name_blank(self):
         account_page = AccountPage(self.driver)
         edit_account_information = EditAccountInformationPage(self.driver)
