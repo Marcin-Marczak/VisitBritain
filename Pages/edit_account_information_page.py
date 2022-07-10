@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.keys import Keys
 from Pages.base_page import BasePage
 
 
@@ -8,7 +9,6 @@ class EditAccountInformationPage(BasePage):
     NAME_PREFIX_SELECT = (By.ID, "prefix")
     FIRST_NAME_INPUT = (By.ID, "firstname")
     LAST_NAME_INPUT = (By.ID, "lastname")
-    SAVE_BUTTON = (By.CSS_SELECTOR, "[title='Save']")
     GO_BACK_LINK = (By.XPATH, "//a[@class='action back']")
 
     def __init__(self, driver):
@@ -30,6 +30,6 @@ class EditAccountInformationPage(BasePage):
         self.driver.find_element(*self.LAST_NAME_INPUT).send_keys(last_name)
 
         if submit_or_go_back_without_submit == "submit":
-            self.click_on_element(*self.SAVE_BUTTON)
+            self.driver.find_element(*self.LAST_NAME_INPUT).send_keys(Keys.ENTER)
         elif submit_or_go_back_without_submit == "go_back_without_submit":
             self.click_on_element(*self.GO_BACK_LINK)
